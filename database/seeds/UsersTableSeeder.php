@@ -11,16 +11,21 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $role= factory(App\Models\Role::class,'admin')->create();
-       factory(App\User::class, 'admin', 5)->create()->each(function ($user) use ($role) {
-           $role->users()->attach($user);
-       $user->profile()->save(factory(\App\Models\Profile::class, 'admin')->make());
 
-       });
-
-        $role= factory(App\Models\Role::class,'manager')->create();
-        factory(App\User::class, 'manager', 5)->create()->each(function ($user) use ($role) {
+        $role = factory(App\Models\Role::class, 'admin')->create();
+        $group = factory(App\Models\Group::class, 'admin')->create();
+        factory(App\User::class, 'admin', 5)->create()->each(function ($user) use ($role, $group) {
             $role->users()->attach($user);
+            $group->users()->save($user);
+            $user->profile()->save(factory(\App\Models\Profile::class, 'admin')->make());
+
+        });
+
+        $role = factory(App\Models\Role::class, 'manager')->create();
+        $group = factory(App\Models\Group::class, 'manager')->create();
+        factory(App\User::class, 'manager', 10)->create()->each(function ($user) use ($role, $group) {
+            $role->users()->attach($user);
+            $group->users()->save($user);
             $user->profile()->save(factory(\App\Models\Profile::class, 'manager')->make());
 
         });

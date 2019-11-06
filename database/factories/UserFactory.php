@@ -21,10 +21,19 @@ $factory->define(User::class, function (Faker $faker) {
     $faker=\Faker\Factory::create('lv_LV');
     return [
         'login' => $faker->userName,
-        'email' => $faker->unique()->safeEmail,
+        'email' => $faker->unique()->email,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
+    ];
+});
+
+$factory->defineAs(App\Models\Group::class, 'admin', function (Faker $faker) {
+    $faker=\Faker\Factory::create('lv_LV');
+    return [
+        'name' =>'Group 1',
+        'slug' => 'group_1',
+        'description' =>$faker->realText(20),
     ];
 });
 
@@ -36,9 +45,7 @@ $factory->defineAs(App\User::class, 'admin', function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => bcrypt('123456'),
         'isActive' => $faker->boolean,
-        'group'    =>'default',
         'remember_token' => Str::random(10),
-
     ];
 });
 $factory->defineAs(App\Models\Role::class, 'admin', function (Faker $faker) {
@@ -55,9 +62,17 @@ $factory->defineAs(App\Models\Profile::class, 'admin', function (Faker $faker) {
     return [
         'name' => $faker->firstName,
         'surname'=>$faker->lastName,
-        'email' => $faker->safeEmail,
+        'email' => $faker->email,
         'phone' => $faker->phoneNumber,
-         'user_id' => $faker->boolean,
+
+    ];
+});
+$factory->defineAs(App\Models\Group::class, 'admin', function (Faker $faker) {
+    $faker=\Faker\Factory::create('lv_LV');
+    return [
+        'name' =>'Group 1',
+        'slug' => 'group_1',
+        'description' =>$faker->realText(20),
     ];
 });
 $factory->defineAs(App\User::class, 'manager', function (Faker $faker) {
@@ -68,7 +83,6 @@ $factory->defineAs(App\User::class, 'manager', function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => bcrypt('123456'),
         'isActive' => $faker->boolean,
-        'group'    =>'default',
         'remember_token' => Str::random(10),
 
     ];
@@ -81,6 +95,14 @@ $factory->defineAs(App\Models\Role::class, 'manager', function (Faker $faker) {
         'description' =>$faker->realText(20),
     ];
 });
+$factory->defineAs(App\Models\Group::class, 'manager', function (Faker $faker) {
+    $faker=\Faker\Factory::create('lv_LV');
+    return [
+        'name' =>'Group 2',
+        'slug' => 'group_2',
+        'description' =>$faker->realText(20),
+    ];
+});
 
 $factory->defineAs(App\Models\Profile::class, 'manager', function (Faker $faker) {
     $faker=\Faker\Factory::create('lv_LV');
@@ -89,6 +111,5 @@ $factory->defineAs(App\Models\Profile::class, 'manager', function (Faker $faker)
         'surname'=>$faker->lastName,
         'email' => $faker->safeEmail,
         'phone' => $faker->phoneNumber,
-        'user_id' => $faker->boolean,
     ];
 });

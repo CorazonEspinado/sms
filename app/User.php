@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'email', 'password','group'
+        'login', 'email', 'password','group_id'
     ];
 
     /**
@@ -48,6 +48,9 @@ class User extends Authenticatable
     public function profile() {
 
         return $this->hasOne('App\Models\Profile');
-
     }
+    public function group() {
+        return $this->belongsTo('App\Models\Group');
+    }
+
 }

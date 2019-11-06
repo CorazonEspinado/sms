@@ -9,7 +9,8 @@ class MainController extends Controller
 {
    public function index() {
 
-
+       $user=User::get();
+//       dd($user);
        return view('welcome');
    }
 }
