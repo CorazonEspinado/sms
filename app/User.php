@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'email', 'password','group_id'
+        'login', 'email', 'password', 'group_id'
     ];
 
     /**
@@ -45,12 +45,20 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user');
     }
 
-    public function profile() {
+    public function profile()
+    {
 
         return $this->hasOne('App\Models\Profile');
     }
-    public function group() {
+
+    public function group()
+    {
         return $this->belongsTo('App\Models\Group');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message');
     }
 
 }

@@ -18,7 +18,7 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
         'login' => $faker->userName,
         'email' => $faker->unique()->email,
@@ -29,16 +29,16 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->defineAs(App\Models\Group::class, 'admin', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
-        'name' =>'Group 1',
+        'name' => 'Group 1',
         'slug' => 'group_1',
-        'description' =>$faker->realText(20),
+        'description' => $faker->realText(20),
     ];
 });
 
 $factory->defineAs(App\User::class, 'admin', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
         'login' => $faker->userName,
         'email' => $faker->unique()->email,
@@ -49,34 +49,44 @@ $factory->defineAs(App\User::class, 'admin', function (Faker $faker) {
     ];
 });
 $factory->defineAs(App\Models\Role::class, 'admin', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
-        'name' =>'Администратор',
+        'name' => 'Администратор',
         'slug' => 'admin',
-        'description' =>$faker->realText(20),
+        'description' => $faker->realText(20),
     ];
 });
 
 $factory->defineAs(App\Models\Profile::class, 'admin', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
         'name' => $faker->firstName,
-        'surname'=>$faker->lastName,
+        'surname' => $faker->lastName,
         'email' => $faker->email,
         'phone' => $faker->phoneNumber,
 
     ];
 });
 $factory->defineAs(App\Models\Group::class, 'admin', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
-        'name' =>'Group 1',
+        'name' => 'Group 1',
         'slug' => 'group_1',
-        'description' =>$faker->realText(20),
+        'description' => $faker->realText(20),
+    ];
+});
+$factory->defineAs(App\Models\Message::class, 'admin', function (Faker $faker) {
+    $faker = \Faker\Factory::create('lv_LV');
+    return [
+        'sender' => $faker->phoneNumber,
+        'recipient' => $faker->phoneNumber,
+        'text' => $faker->realText(20),
+        'keywords' => $faker->word,
+        'direction' => $faker->boolean
     ];
 });
 $factory->defineAs(App\User::class, 'manager', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
         'login' => $faker->userName,
         'email' => $faker->unique()->email,
@@ -88,28 +98,38 @@ $factory->defineAs(App\User::class, 'manager', function (Faker $faker) {
     ];
 });
 $factory->defineAs(App\Models\Role::class, 'manager', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
-        'name' =>'Manager',
+        'name' => 'Manager',
         'slug' => 'manager',
-        'description' =>$faker->realText(20),
+        'description' => $faker->realText(20),
     ];
 });
 $factory->defineAs(App\Models\Group::class, 'manager', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
-        'name' =>'Group 2',
+        'name' => 'Group 2',
         'slug' => 'group_2',
-        'description' =>$faker->realText(20),
+        'description' => $faker->realText(20),
     ];
 });
 
 $factory->defineAs(App\Models\Profile::class, 'manager', function (Faker $faker) {
-    $faker=\Faker\Factory::create('lv_LV');
+    $faker = \Faker\Factory::create('lv_LV');
     return [
         'name' => $faker->firstName,
-        'surname'=>$faker->lastName,
+        'surname' => $faker->lastName,
         'email' => $faker->safeEmail,
         'phone' => $faker->phoneNumber,
+    ];
+});
+$factory->defineAs(App\Models\Message::class, 'manager', function (Faker $faker) {
+    $faker = \Faker\Factory::create('lv_LV');
+    return [
+        'sender' => $faker->phoneNumber,
+        'recipient' => $faker->phoneNumber,
+        'text' => $faker->realText(20),
+        'keywords' => $faker->word,
+        'direction' => $faker->boolean
     ];
 });
