@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
@@ -12,12 +13,8 @@ class MainController extends Controller
 
        $groups=Group::get();
        $users=User::get();
-       foreach ($users as $user) {
-           dump($user->group);
-           dump($user->profile);
-           dump($user->messages);
-       }
-dd('a');
+       $user=Auth::user();
+
          return view('welcome',compact('groups'));
    }
 }

@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/','MainController@index');
+Route::get('/', 'MainController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'isManager'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::group(['middleware' => 'isAdmin'], function () {
+        Route::get('/users', 'HomeController@users');
+    });
+});
