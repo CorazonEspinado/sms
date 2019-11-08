@@ -5,12 +5,14 @@
             Dashboard <span class="sr-only">(current)</span>
         </a>
     </li>
+    @cannot('isManager')
     <li class="nav-item">
         <a class="nav-link" href="#">
             <span data-feather="file"></span>
             Users
         </a>
     </li>
+    @endcan
     <li class="nav-item">
         <a class="nav-link" href="#">
             <span data-feather="shopping-cart"></span>
